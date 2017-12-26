@@ -1,0 +1,52 @@
+﻿@model AppMedico.Models.Paciente
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2 style="text-align:center">Visualizar</h2>
+
+<p>
+    @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-warning" })
+</p>
+
+<div class="panel-success">
+    <div class="panel-heading">
+        Registro do Paciente @Model.Nome
+    </div>
+    <div class="bg-info" id="informacao">
+        <div class="form-control">
+            <span class="paragrafo">Codigo do Paciente: @Model.IDPaciente</span> <br>
+        </div>
+        <div class="form-control">
+            <span class="paragrafo"> Nome do Paciente: @Model.Nome</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">RG:@Model.RG</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">CPF:@Model.CPF</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Telefone:@Model.Telefone</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Tipo Sanguinio:</span><span style="color:red">@Model.TipoSangue</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Rua:@Model.Rua</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Bairro:@Model.Bairro</span>  <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">CEP:@Model.Cep</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Cidade:@Model.Cidade.Nome</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Estado:@Model.Estado.Nome</span> <br />
+        </div>
+    </div>
+</div>

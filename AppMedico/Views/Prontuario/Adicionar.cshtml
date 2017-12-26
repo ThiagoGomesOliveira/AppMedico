@@ -1,0 +1,41 @@
+﻿@model AppMedico.Models.x
+
+@{
+    ViewBag.Title = "Adicionar";
+}
+<h2 style="text-align:center">Criação do Prontuário</h2>
+<p>
+    @Html.ActionLink("Voltar para a Lista de Pacientes", "Index", null, new { @class = "btn btn-warning" })
+</p>
+
+<form action="/Prontuario/Adiciona" method="post">
+    <br />
+    <label for="paciente">Nome do Paciente</label>
+    <select id="paciente" name="prontuario.IDPaciente" class="form-control">
+        @foreach (var paciente in ViewBag.Paciente)
+        {
+            <option value="@paciente.IDPaciente">@paciente.Nome</option>
+        }
+    </select>
+
+    <label for="diagnostico">Diagnostico</label>
+    <input id="diagnostico" class="form-control" name="prontuario.Diagnostico" value="@ViewBag.Prontuario.Diagnostico" />
+    @Html.ValidationMessage("prontuario.Diagnostico")
+
+    <label for="observacao">Observações</label>
+    <textarea class="form-control" rows="3" id="observacao" name="prontuario.Observacao" value="@ViewBag.Prontuario.Observacao">
+    </textarea>
+    @Html.ValidationMessage("prontuario.Observacao")
+
+    <label for="tratamentoPaciente">Tratamento do Paciente</label>
+   <textarea class="form-control" rows="5" id="tratamentoPaciente" name="prontuario.TratamentoPaciente" value="@ViewBag.Prontuario.TratamentoPaciente">
+   </textarea>
+    @Html.ValidationMessage("prontuario.TratamentoPaciente")
+    <label for="evolucaoPaciente"> Evolução do  Paciente ao Tratamento</label>
+<textarea class="form-control" rows="5" id="evolucaoPaciente" name="prontuario.EvolucaoPaciente" value="@ViewBag.Prontuario.EvolucaoPaciente">
+</textarea>
+    @Html.ValidationMessage("prontuarioEvolucaoPaciente")
+
+    <input type="submit" value="Salvar" class="btn btn-primary btn-lg center-block" />
+
+</form>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AppMedico.Models.Medicos>
+@{
+    ViewBag.Title = "Adiciona";
+}
+<p>
+    @Html.ActionLink("Voltar para Lista de Médicos", "Index", null, new { @class = "btn btn-warning" })
+</p>
+
+<form action="/Medico/Adicionar" method="post">
+
+    <label for="crm">Crm:</label>
+    <input id="crm" name="medico.CRM" class="form-control" value="@ViewBag.Medico.CRM" />
+    @Html.ValidationMessage("medico.Crm")
+
+
+    <label for="nome">Nome:</label>
+    <input id="nome" name="medico.Nome" class="form-control" value=" @ViewBag.Medico.Nome" />
+    @Html.ValidationMessage("medico.Nome")
+
+    <label for="email">Email:</label>
+    <input id="email" name="medico.Email" class="form-control" value=" @ViewBag.Medico.Email" />
+    @Html.ValidationMessage("medico.Email")
+    <label for="rua">Rua:</label>
+    <input id="rua" name="medico.Rua" class="form-control" value=" @ViewBag.Medico.Rua" />
+    @Html.ValidationMessage("medico.Rua")
+    <label for="bairro">Bairro:</label>
+    <input id="bairro" name="medico.Bairro" class="form-control" value=" @ViewBag.Medico.Bairro" />
+    @Html.ValidationMessage("medico.Bairro")
+    <label for="cep">Cep:</label>
+    <input id="cep" name="medico.Cep" class="form-control" value=" @ViewBag.Medico.Cep" />
+
+    <label for="cidade">Cidade:</label>
+    <select id="cidade" name="medico.IDCidade" class="form-control">
+        @foreach (var cidade in ViewBag.Cidade)
+        {
+            <option value="@cidade.IDCidade">@cidade.Nome</option>
+        }
+    </select>
+
+    <label for="estado">Estado:</label>
+    <select id="estado" name="medico.IDEstado" class="form-control">
+        @foreach (var estado in ViewBag.Estado)
+        {
+            <option value="@estado.IDEstado">@estado.Nome</option>
+        }
+    </select>
+
+    <label for="especialidade">Especialidade:</label>
+    <select id="especialidade" name="medico.IDEspecialidade" class="form-control">
+        @foreach (var especialidade in ViewBag.Especialidade)
+        {
+            <option value="@especialidade.IDEspecialidade">@especialidade.Nome</option>
+        }
+    </select><br />
+
+    <label for="atendePorConvenio">AtendePorConvenio ?</label>
+    <input type="checkbox" name="medico.AtendePorConvenio " value="@ViewBag.Medico.AtendePorConvenio"> <br>
+
+    <label for="TemClinica">TemClinica</label>
+    <input type="checkbox" name="medico.TemClinica" value="@ViewBag.Medico.TemClinica" ><br>
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg center-block" />
+</form>
+
+
+

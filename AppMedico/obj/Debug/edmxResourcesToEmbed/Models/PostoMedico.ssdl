@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PostoMedicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cidade">
+    <Key>
+      <PropertyRef Name="IDCidade" />
+    </Key>
+    <Property Name="IDCidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="75" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Especialidades">
+    <Key>
+      <PropertyRef Name="IDEspecialidade" />
+    </Key>
+    <Property Name="IDEspecialidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="75" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="IDEstado" />
+    </Key>
+    <Property Name="IDEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="UF" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="MarcarConsulta">
+    <Key>
+      <PropertyRef Name="IDConsulta" />
+    </Key>
+    <Property Name="IDConsulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPaciente" Type="int" Nullable="false" />
+    <Property Name="IDMedico" Type="int" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+    <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Observacoes" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Medicos">
+    <Key>
+      <PropertyRef Name="IDMedico" />
+    </Key>
+    <Property Name="IDMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CRM" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="AtendePorConvenio" Type="bit" />
+    <Property Name="TemClinica" Type="bit" />
+    <Property Name="Rua" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Bairro" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Cep" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="IDCidade" Type="int" Nullable="false" />
+    <Property Name="IDEstado" Type="int" Nullable="false" />
+    <Property Name="IDEspecialidade" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="IDPaciente" />
+    </Key>
+    <Property Name="IDPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="RG" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Telefone" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="TipoSangue" Type="varchar" MaxLength="3" />
+    <Property Name="Enfermidade" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Rua" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Bairro" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Cep" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="IDCidade" Type="int" Nullable="false" />
+    <Property Name="IDEstado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prontuario">
+    <Key>
+      <PropertyRef Name="IDProntuario" />
+    </Key>
+    <Property Name="IDProntuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDPaciente" Type="int" Nullable="false" />
+    <Property Name="Diagnostico" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Observacao" Type="varchar(max)" Nullable="false" />
+    <Property Name="TratamentoPaciente" Type="varchar(max)" Nullable="false" />
+    <Property Name="EvolucaoPaciente" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IDUsuario" />
+    </Key>
+    <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="fk_marcarconsulta_medicos">
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="1" />
+    <End Role="MarcarConsulta" Type="Self.MarcarConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicos">
+        <PropertyRef Name="IDMedico" />
+      </Principal>
+      <Dependent Role="MarcarConsulta">
+        <PropertyRef Name="IDMedico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_marcarConsulta_paciente">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+    <End Role="MarcarConsulta" Type="Self.MarcarConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="IDPaciente" />
+      </Principal>
+      <Dependent Role="MarcarConsulta">
+        <PropertyRef Name="IDPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_medicos_cidade">
+    <End Role="Cidade" Type="Self.Cidade" Multiplicity="1" />
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cidade">
+        <PropertyRef Name="IDCidade" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="IDCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_medicos_especialidades">
+    <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidades">
+        <PropertyRef Name="IDEspecialidade" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="IDEspecialidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_medicos_estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="IDEstado" />
+      </Principal>
+      <Dependent Role="Medicos">
+        <PropertyRef Name="IDEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_paciente_cidade">
+    <End Role="Cidade" Type="Self.Cidade" Multiplicity="1" />
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cidade">
+        <PropertyRef Name="IDCidade" />
+      </Principal>
+      <Dependent Role="Paciente">
+        <PropertyRef Name="IDCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_paciente_estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="IDEstado" />
+      </Principal>
+      <Dependent Role="Paciente">
+        <PropertyRef Name="IDEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_prontuario_paciente">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+    <End Role="Prontuario" Type="Self.Prontuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="IDPaciente" />
+      </Principal>
+      <Dependent Role="Prontuario">
+        <PropertyRef Name="IDPaciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PostoMedicoModelStoreContainer">
+    <EntitySet Name="Cidade" EntityType="Self.Cidade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Especialidades" EntityType="Self.Especialidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MarcarConsulta" EntityType="Self.MarcarConsulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prontuario" EntityType="Self.Prontuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_marcarconsulta_medicos" Association="Self.fk_marcarconsulta_medicos">
+      <End Role="Medicos" EntitySet="Medicos" />
+      <End Role="MarcarConsulta" EntitySet="MarcarConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_marcarConsulta_paciente" Association="Self.fk_marcarConsulta_paciente">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="MarcarConsulta" EntitySet="MarcarConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_medicos_cidade" Association="Self.fk_medicos_cidade">
+      <End Role="Cidade" EntitySet="Cidade" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_medicos_especialidades" Association="Self.fk_medicos_especialidades">
+      <End Role="Especialidades" EntitySet="Especialidades" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_medicos_estado" Association="Self.fk_medicos_estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Medicos" EntitySet="Medicos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_paciente_cidade" Association="Self.fk_paciente_cidade">
+      <End Role="Cidade" EntitySet="Cidade" />
+      <End Role="Paciente" EntitySet="Paciente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_paciente_estado" Association="Self.fk_paciente_estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Paciente" EntitySet="Paciente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_prontuario_paciente" Association="Self.fk_prontuario_paciente">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Prontuario" EntitySet="Prontuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

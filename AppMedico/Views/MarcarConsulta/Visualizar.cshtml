@@ -1,0 +1,39 @@
+﻿@model AppMedico.Models.MarcarConsulta
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2 style="text-align:center ">Visualizar</h2>
+<p>
+    @Html.ActionLink("Voltar para Lista","Index", null, new { @class = "btn btn-warning" })
+</p>
+
+<div class="panel-success">
+         <div class="panel-heading">
+             Registro da Consulta 
+        </div>
+        <div class="bg-info" id="informacao">
+            <div class="form-control">
+                <span class="paragrafo">Codigo da Consulta:@Model.IDConsulta</span> <br>
+            </div>
+            <div class="form-control">
+                <span class="paragrafo"> Nome do Paciente:@Model.Paciente.Nome</span><br />
+            </div>
+            <div class="form-control">
+                <span class="paragrafo">Nome do Médico:@Model.Medicos.Nome</span> <br />
+            </div>
+            <div class="form-control">
+                <span class="paragrafo">Data da consulta:@Model.Data.ToString("dd MMM yyyy")</span><br />
+            </div>
+            <div class="form-control">
+                <span class="paragrafo">Hora da consulta:@Model.Hora</span> <br />
+            </div>
+            <div class="form-control">
+                <span class="paragrafo">Observações sobre Paciente:@Model.Observacoes</span> <br />
+            </div>
+        </div>
+ </div>
+
+
+

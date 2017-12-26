@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AppMedico.Models.MarcarConsulta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel-heading">
+    <h1> Relação das Consultas registradas</h1>
+</div>
+
+@Html.Partial("_Index", Model)
+
+          <div class="panel-footer panel-info">
+        @Html.ActionLink("Registrar uma nova Consulta", "Adiciona", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Voltar ", "Index", "Home", null, new { @class = "btn btn-warning" })
+        </div>
+         
+
+        @section styles{
+            <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")"rel="stylesheet" />
+        }
+        @section ScriptPage {
+            <script type="text/javascript" src="~/Scripts/jquery-3.2.1.js"></script>
+            <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+            <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
+            
+           <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.table').dataTable({
+                        "language": {
+                            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                        }
+
+                    });
+                    "order"[[1, "asc"]]
+                });
+          </script>
+        }
+       

@@ -1,0 +1,76 @@
+﻿@model AppMedico.Models.Paciente
+
+
+
+@{
+    ViewBag.Title = "Adicionar";
+}
+
+<h2 style="text-align:center">Ficha de Cadastro do Paciente</h2>
+
+<div>
+    @Html.ActionLink("Voltar para a Lista de Pacientes", "Index", null, new { @class = "btn btn-warning" })
+</div>
+
+<form action="/Paciente/Adiciona" method="post">
+
+    <label for="nome">Nome</label>
+    <input id="nome" name="paciente.Nome" class="form-control" value="@ViewBag.Paciente.Nome" />
+    @Html.ValidationMessage("paciente.Nome")
+
+    <label for="rg">RG</label>
+    <input id="rg" name="paciente.RG" class="form-control" value="@ViewBag.Paciente.RG" />
+
+
+    <label for="cpf">CPF</label>
+    <input id="cpf" name="paciente.CPF" class="form-control" value="@ViewBag.Paciente.CPF" />
+
+    <label for="telefone">Telefone</label>
+    <input id="telefone" name="paciente.Telefone" class="form-control" value="@ViewBag.Paciente.Telefone" />
+
+    <label for="sexo">Sexo</label>
+    <input id="sexo" name="paciente.Sexo" class="form-control" value="@ViewBag.Paciente.Sexo" />
+
+    <label for="email">Email</label>
+    <input id="email" name="paciente.Email" class="form-control" value="@ViewBag.Paciente.Email" />
+
+    <label for="tipoSangue">Tipo Sanguinio</label>
+    <input id="tipoSangue" name="paciente.TipoSangue" class="form-control" value="@ViewBag.Paciente.TipoSangue" />
+
+
+    <label for="enfermidade">Enfermidade</label>
+    <input id="enfermidade" name="paciente.Enfermidade" class="form-control" value="@ViewBag.Paciente.Enfermidade" />
+
+
+    <label for="rua">Rua</label>
+    <input id="rua" name="paciente.Rua" class="form-control" value="@ViewBag.Paciente.Rua" />
+
+    <label for="bairro">Bairro </label>
+    <input id="bairro" name="paciente.Bairro" class="form-control" value="@ViewBag.Paciente.Bairro" />
+
+
+    <label for="cep">Cep</label>
+    <input id="cep" name="paciente.Cep" class="form-control" value="@ViewBag.Paciente.Cep" />
+
+    <label for="cidade">Cidade:</label>
+    <select id="cidade" name="paciente.IDCidade" class="form-control">
+        @foreach (var cidade in ViewBag.Cidade)
+        {
+            <option value="@cidade.IDCidade">@cidade.Nome</option>
+        }
+    </select>
+
+    <label for="estado">Estado</label>
+    <select id="estado" name="paciente.IDEstado" class="form-control">
+        @foreach (var estado in ViewBag.Estado)
+        {
+            <option value="@estado.IDEstado">@estado.Nome</option>
+        }
+    </select>
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg center-block" />
+
+</form>
+
+
+

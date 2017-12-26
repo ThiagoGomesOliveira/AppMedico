@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<AppMedico.Models.MarcarConsulta>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel-success ">
+    <div class="panel-heading">
+        Relação das Consultas registradas para o Dia @ViewBag.Data
+       
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr>
+                    <th scope="row">Código da Consulta</th>
+                    <th scope="row">Paciente</th>
+                    <th scope="row">Horario</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDConsulta</td>
+                        <td>@item.Paciente.Nome</td>
+                        <td>@item.Hora</td>
+                        @if (Session["MedicoLogado"] == null)
+                        {
+                            <td style="display:none">@Html.ActionLink("Prontuario", "Adicionar", "Prontuario", null, new { @class = "btn btn-primary btn-sm" })</td>
+                        }
+                        else
+                        {
+                            <td>@Html.ActionLink("Prontuario","ProntuarioMedico","Prontuario", new { id = item.IDPaciente }, new { @class = "btn btn-primary btn-sm" })</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel-success">
+    <div class="panel-heading">
+        Registro Do Posto de Saúde
+    </div>
+    <div class="bg-info" id="informacao">
+        <p class="paragrafo">Quantidade De pacientes: @ViewBag.Paciente</p>
+        <p class="paragrafo">Quantidade De Consulta do Mês:@ViewBag.Consulta</p>
+        <p class="paragrafo">Quantidade De Consultas Agendas Para @ViewBag.Data: @ViewBag.Opos</p>
+     </div>
+</div>

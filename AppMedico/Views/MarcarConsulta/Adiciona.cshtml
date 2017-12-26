@@ -1,0 +1,50 @@
+﻿@model AppMedico.Models.MarcarConsulta
+
+@{
+    ViewBag.Title = "Adiciona";
+}
+
+<h2>Agendar Consulta</h2>
+
+<div>
+    @Html.ActionLink("Voltar para a Lista de Consultas", "Index", null, new { @class = "btn btn-warning" })
+</div>
+
+
+<form action="/MarcarConsulta/Adicionar" method="post">
+
+    <label for="paciente">Nome do Paciente</label>
+    <select id="paciente" name="consulta.IDPaciente" class="form-control">
+        @foreach (var paciente in ViewBag.Paciente)
+        {
+            <option value="@paciente.IDPaciente">@paciente.Nome</option>
+        }
+
+    </select>
+
+    <label for="medico">Nome do Médico</label>
+    <select id="medico" name="consulta.IDMedico" class="form-control">
+        @foreach (var medico in ViewBag.Medico)
+        {
+            <option value="@medico.IDMedico">@medico.Nome</option>
+        }
+    </select>
+
+    <label for="data">Data da Consulta</label>
+    <input type="date" id="data" name="consulta.Data" class="form-control" value="@ViewBag.Consulta.Data" />
+
+
+    <label for="hora">Hora</label>
+    <input type="time" id="hora" name="consulta.Hora" class="form-control" value="@ViewBag.Consulta.Hora" />
+
+
+    <label for="observacao">Observações</label>
+    <textarea class="form-control" rows="5" id="observacao" name="consulta.Observacoes" value="@ViewBag.Consulta.Observacoes">
+    </textarea>
+
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg center-block" />
+
+</form>
+
+

@@ -1,0 +1,50 @@
+﻿
+@model AppMedico.Models.Medicos
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2 style="text-align:center ">Visualizar</h2>
+<p>
+    @Html.ActionLink("Voltar para Lista de Médicos", "Index", null, new { @class = "btn btn-warning" })
+</p>
+
+<div class="panel-success">
+         <div class="panel-heading">
+             Registro do Médico @Model.Nome
+        </div>
+    <div class="bg-info" id="informacao">
+        <div class="form-control">
+            <span class="paragrafo"> Nome:@Model.Nome</span><br />
+        </div>
+        <div class="form-control" >
+            <span class="paragrafo"> CRM:@Model.CRM</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Email:@Model.Email</span> <br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Rua:@Model.Rua</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Bairro:@Model.Bairro</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">CEP:@Model.Cep</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Especialidade:@Model.Especialidades.Nome</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo"> Cidade:@Model.Cidade.Nome</span><br />
+        </div>
+        <div class="form-control">
+            <span class="paragrafo">Estado:@Model.Estado.Nome</span><br />
+        </div>
+    </div>
+</div>
+
+
+
+

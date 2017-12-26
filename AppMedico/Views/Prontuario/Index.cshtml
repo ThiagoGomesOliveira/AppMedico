@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AppMedico.Models.x>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel-heading">
+    <h1> Relação dos Prontuarios Registrados</h1>
+</div>
+<div class="panel-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo Prontuario</th>
+                <th>Nome Paciente</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prontuario in Model)
+            {
+                <tr>
+                    <td>@prontuario.IDProntuario</td>
+                    <td>@prontuario.Paciente.Nome</td>
+                    <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = prontuario.IDProntuario }, new { @class = "btn btn-primary btn-sm" }) 
+                    @Html.ActionLink("Visualizar", "Visualizar", new { id = prontuario.IDProntuario }, new { @class = "btn btn-primary btn-sm" }) 
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>
+<div class="panel-footer panel-info">
+    @Html.ActionLink("Registrar um novo Prontuario", "Adicionar", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Registrar Retorno ", "Adicionar", "MarcarConsulta", null, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Voltar ", "Index", "Home", null, new { @class = "btn btn-warning" })
+</div>
+
+@section styles{
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
+}
+
+@section ScriptPage {
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
+
+
+   <script type="text/javascript">
+           $(document).ready(function () {
+               $('.table').dataTable({
+                   "language": {
+                       "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                   }
+
+               });
+               "order"[[1, "asc"]]
+           });
+</script>
+
+
+
+}
