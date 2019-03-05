@@ -2,7 +2,7 @@
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <!-- Diagram content (shape and connector positions) -->
+    <!-- Diagram content (shape and connector positions) -->http://localhost:54784/Models/PostoMedico.edmx.diagram
     <edmx:Diagrams>
       <Diagram DiagramId="c58a260d8aec46f7a6d81406af71ca95" Name="Diagram1">
         <EntityTypeShape EntityType="PostoMedicoModel.Cidade" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
